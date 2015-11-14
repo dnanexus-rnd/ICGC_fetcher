@@ -1,0 +1,63 @@
+{
+  "name": "ICGC_fetcher",
+  "title": "ICGC Data Fetcher",
+  "summary": "Fetches Data from the ICGC Data Portal",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "categories": [],
+  "inputSpec": [
+    {
+      "name": "object_ids",
+      "label": "Object ID(s)",
+      "help": "Object ID(s) of files to download, multiple IDs can be given",
+      "class": "array:string",
+      "optional": true
+    },
+    {
+      "name": "access_token",
+      "label": "Access Token",
+      "help": "Provisioned access token to the ICGC Data Portal",
+      "class": "string",
+      "optional": false
+    },
+    {
+      "name": "manifest",
+      "label": "Manifest file",
+      "help": "Manifest file specifying files to download",
+      "class": "file",
+      "optional": true
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "output_files",
+      "label": "Output Files",
+      "class": "array:file"
+    }
+  ],
+  "runSpec": {
+    "interpreter": "bash",
+    "file": "src/ICGC_fetcher.sh",
+    "distribution": "Ubuntu",
+    "release": "14.04",
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x2"
+      }
+    },
+    "bundledDepends":[
+     {
+        "id": {"$dnanexus_link": "file-Bk36x6807ykB74YVqbG050Yq"},
+        "name": "dcc-storage-client-1.0.0.tar.gz"
+    }],
+    "execDepends": [
+      {
+        "name": "libfuse-dev"
+      },
+      {
+        "name": "software-properties-common"
+      }]},
+    "access": {
+      "network": ["*"]
+    }
+}
