@@ -1,7 +1,7 @@
 {
   "name": "ICGC_fetcher",
   "title": "ICGC Data Fetcher",
-  "summary": "Fetches Data from the ICGC Data Portal",
+  "summary": "Fetches controlled-access files from the AWS mirror of ICGC data",
   "dxapi": "1.0.0",
   "version": "0.0.1",
   "categories": [],
@@ -16,14 +16,14 @@
     {
       "name": "access_token",
       "label": "Access Token",
-      "help": "Provisioned access token to the ICGC Data Portal",
-      "class": "string",
+      "help": "A file containing the access token provisioned in the ICGC Data Portal",
+      "class": "file",
       "optional": false
     },
     {
       "name": "manifest",
       "label": "Manifest file",
-      "help": "Manifest file specifying files to download",
+      "help": "Manifest file specifying files to download, instead of object_ids list",
       "class": "file",
       "optional": true
     }
