@@ -4,7 +4,7 @@
 Fetches controlled-access files from the AWS mirror of ICGC data
 <!-- /dx-header -->
 
-This applet supports data retrieval using the ICGC DCC Storage Client tool (v1.0.0). You can use it either to bring files in for immediate processing in a workflow, or to import them into your secure DNAnexus projects for later use. The data access should be very fast, because the DCC storage client accesses a mirror of the data in Amazon S3. Detailed instructions follow, and please contact support@dnanexus.com for further assistance if needed.
+This applet supports data retrieval using the ICGC DCC Storage Client tool (v1.0.0). A live copy is available in the [ICGC_fetcher](https://platform.dnanexus.com/projects/Bk52qXQ0ZPjxJK280bPY6G50/data/) project on the platform. You can use it either to bring files in for immediate processing in a workflow, or to import them into your secure DNAnexus projects for later use. The data access should be very fast, because the DCC storage client accesses a mirror of the data in Amazon S3. Detailed instructions follow, and please contact support@dnanexus.com for further assistance as needed.
 
 ## Prerequisite: access token
 
