@@ -38,11 +38,9 @@
   "runSpec": {
     "interpreter": "bash",
     "file": "src/ICGC_fetcher.sh",
-    "distribution": "Ubuntu",
-    "release": "14.04",
     "systemRequirements": {
       "main": {
-        "instanceType": "mem1_ssd1_x2"
+        "instanceType": "mem2_hdd2_x2"
       }
     },
     "bundledDepends":[

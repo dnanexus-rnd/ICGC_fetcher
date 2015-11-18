@@ -2,10 +2,9 @@
 
 
 main() {
-    dx-download-all-inputs
-    access_token_contents=$(cat in/access_token/* | tr -d '\r\n')
-
     set -e -x -o pipefail
+
+    dx-download-all-inputs
 
     # Check that only 1 of object-id(s) and manifest is defined
     if [ ${#object_ids[@]} -eq 0 ] && [ -z "$manifest" ]; then
@@ -25,22 +24,26 @@ main() {
     DEBIAN_FRONTEND=noninteractive apt-get install -y -qq oracle-java8-set-default
 
     # Prepare output folder
-    mkdir -p ~/out/output_files/
+    mkdir -p ~/out/output_files/ /tmp/output_files
 
     # Move into icgc storage client folder (unpacked from bundle-depends)
     cd /icgc-storage-client-1.0.0
 
     # Update access token
-    sed -i "s/accessToken=/accessToken=${access_token_contents}/g" conf/application.properties
+    echo -n "
+accessToken=" >> conf/application.properties
+    cat /home/dnanexus/in/access_token/* | tr -d '\r\n' >> conf/application.properties
     cd bin
 
+    # Perform transfer(s)
     if [ ${#object_ids[@]} -ne 0 ]; then
         for id in "${object_ids[@]}"; do
-            ./icgc-storage-client download --object-id "${id}" --output-dir ~/out/output_files/
+            ./icgc-storage-client --quiet download --object-id "${id}" --output-dir /tmp/output_files/
         done
     else
-        ./icgc-storage-client download --manifest $manifest_path --output-dir ~/out/output_files/
+        ./icgc-storage-client --quiet download --manifest $manifest_path --output-dir /tmp/output_files/
     fi
 
+    find /tmp/output_files -type f | xargs -i mv {} ~/out/output_files
     dx-upload-all-outputs
 }
